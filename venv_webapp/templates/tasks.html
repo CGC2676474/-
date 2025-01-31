@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>タスク管理</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>{{ user.username }}のタスク</h1>
+            <div class="header-actions">
+                <form action="/logout" method="get">
+                    <button type="submit" class="logout-btn">ログアウト</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- フラッシュメッセージ -->
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="flash-message">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        
+        <!-- タスク追加フォーム -->
+        <div class="add-task">
+            <h2>新しいタスク</h2>
+            <form action="/tasks/{{ user.id }}/add" method="post">
+                <div class="form-group">
+                    <input type="text" name="title" placeholder="タスク名" required>
+                </div>
+                <div class="form-group">
+                    <input type="date" name="due_date" required min="{{ now.strftime('%Y-%m-%d') }}">
+                </div>
+                <button type="submit" class="add-btn">追加</button>
+            </form>
+        </div>
+
+        <!-- 未完了タスク -->
+        <div class="task-list">
+            <h2>やることリスト</h2>
+            {% if tasks %}
+                <ul>
+                    {% for task in tasks %}
+                    <li class="task-item {% if task.due_date < now %}overdue{% endif %}">
+                        <div class="task-content">
+                            <span class="task-title">{{ task.title }}</span>
+                            <span class="task-date">期限: {{ task.due_date.strftime('%Y-%m-%d') }}</span>
+                        </div>
+                        <div class="task-actions">
+                            <form action="/tasks/{{ user.id }}/delete/{{ task.id }}" method="post" class="delete-form">
+                                <button type="submit" class="delete-btn">削除</button>
+                            </form>
+                            <form action="/tasks/{{ user.id }}/complete/{{ task.id }}" method="post">
+                                <button type="submit" class="complete-btn">完了</button>
+                            </form>
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p class="no-tasks">タスクはありません</p>
+            {% endif %}
+        </div>
+
+        <!-- 完了タスク -->
+        <div class="completed-tasks">
+            <h2>完了したタスク</h2>
+            {% if completed_tasks %}
+                <ul>
+                    {% for task in completed_tasks %}
+                        <li class="task-item completed">
+                            <div class="task-content">
+                                <span class="task-title">{{ task.title }}</span>
+                                <div class="task-dates">
+                                    <span class="task-date">期限: {{ task.due_date.strftime('%Y-%m-%d') }}</span>
+                                    <span class="task-date">完了: {{ task.completed_date.strftime('%Y-%m-%d') }}</span>
+                                </div>
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p class="no-tasks">完了したタスクはありません</p>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html> 
