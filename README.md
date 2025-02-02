@@ -75,13 +75,13 @@ http://XXX.XXX.XX.XXX:5000
 ```
 ## フォルダ構成
 ```bash
-/venv_webapp
-│── app.py  # メインアプリケーション
-│── templates/  # HTMLテンプレート
-│── static/  # CSS
-│── .env  # 環境変数ファイル
-│── requirements.txt  # 依存パッケージ
-│── README.md  # このファイル
+/venv_webap
+│── app.py  
+│── templates/
+│── static/
+│── .env  
+│── requirements.txt  
+│── README.md  
 ```
 ## .envファイルの内容
 ```dotenv
