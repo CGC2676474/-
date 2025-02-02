@@ -17,9 +17,10 @@
 - pip（Python パッケージ管理ツール）
 
 ### 2. リポジトリのクローン
-sh
+```sh
 git clone https://github.com/your-repository/task-manager.git
 cd task-manager
+```
 
 ### 3. 仮想環境の作成と依存関係のインストール
 sh
