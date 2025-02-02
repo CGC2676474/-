@@ -84,4 +84,10 @@ http://XXX.XXX.XX.XXX:5000
 │── requirements.txt  # 依存パッケージ
 │── README.md  # このファイル
 ```
-
+## .envファイルの内容
+```dotenv
+DB_USERNAME=postgres
+DB_PASSWORD=kansei
+DB_HOST=localhost
+DB_NAME=dbname
+```
