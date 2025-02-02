@@ -18,8 +18,8 @@
 
 ### 2. リポジトリのクローン
 ```sh
-git clone https://github.com/your-repository/task-manager.git
-cd task-manager
+git clone https://github.com/CGC2676474/shun.git
+cd shun
 ```
 
 ### 3. 仮想環境の作成と依存関係のインストール
@@ -43,7 +43,6 @@ DB_USERNAME=your_db_username
 DB_PASSWORD=your_db_password
 DB_HOST=localhost
 DB_NAME=your_db_name
-SECRET_KEY=your_secret_key
 ```
 ### 6. データベースの初期化
 ```sh
