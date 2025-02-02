@@ -23,49 +23,65 @@ cd task-manager
 ```
 
 ### 3. 仮想環境の作成と依存関係のインストール
-sh
+```sh
 python -m venv venv
-source venv/bin/activate  # Windows の場合: venv\Scripts\activate
+source venv\Scripts\activate
 pip install -r requirements.txt
+```
 
 ### 4. データベースの設定
 PostgreSQL に接続し、データベースとユーザーを作成します。
-sql
+```sql
 CREATE DATABASE your_db_name;
 CREATE USER your_db_username WITH PASSWORD 'your_db_password';
 GRANT ALL PRIVILEGES ON DATABASE your_db_name TO your_db_username;
-
+```
 ### 5. 環境変数の設定
 .env ファイルを作成し、以下のようにデータベース情報を設定します。
+```dotenv
 DB_USERNAME=your_db_username
 DB_PASSWORD=your_db_password
 DB_HOST=localhost
 DB_NAME=your_db_name
 SECRET_KEY=your_secret_key
-
+```
 ### 6. データベースの初期化
-sh
+```sh
 flask db init
 flask db migrate -m "Initial migration."
 flask db upgrade
+```
 
-### 7. アプリの起動
-sh
+### 7. アプリを実行する
+```sh
 python app.py
-
+```
+実行すると二つのURLが表示されます
+```flask run
+WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://XXX.XXX.XX.XXX:5000　(同じネットワーク内の他のデバイスからもアクセス可能になります。)
+Press CTRL+C to quit
+```
+が表示される
 ### 8. ブラウザでアクセス
-アプリが起動したら、ブラウザで以下の URL にアクセスします。
+アプリが起動したら、ブラウザで以下の URL にアクセスできます。
+```url
 http://127.0.0.1:5000/
-
+```
+同じネットワーク内の他のデバイスからアクセスしたい時はブラウザで以下のURLにアクセスしてください。
+```sh
+http://XXX.XXX.XX.XXX:5000
+```
 ## フォルダ構成
-/task-manager
+```bash
+/venv_webapp
 │── app.py  # メインアプリケーション
-│── models.py  # データベースモデル
 │── templates/  # HTMLテンプレート
-│── static/  # CSS・JavaScript・画像
+│── static/  # CSS
 │── .env  # 環境変数ファイル
 │── requirements.txt  # 依存パッケージ
 │── README.md  # このファイル
+```
 
-## ライセンス
-このプロジェクトは MIT ライセンスの下で提供されています。
