@@ -18,8 +18,8 @@
 
 ### 2. リポジトリのクローン
 ```sh
-git clone https://github.com/CGC2676474/shun.git
-cd shun
+git clone https://github.com/CGC2676474/task-main.git
+cd task-main/venv_webapp
 ```
 
 ### 3. 仮想環境の作成と依存関係のインストール
@@ -75,13 +75,12 @@ http://XXX.XXX.XX.XXX:5000
 ```
 ## フォルダ構成
 ```bash
-/venv_webap
-│── app.py  
-│── templates/
-│── static/
-│── .env  
-│── requirements.txt  
-│── README.md  
+/task-main
+│── venv_webapp/
+│── Persona.pdf
+│── README.md
+│── システムダイアグラム.pdf
+│── タスク管理アプリデモ動画.mp4  
 ```
 ## .envファイルの内容
 ```dotenv
